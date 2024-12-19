@@ -8,8 +8,11 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection
-const DB_URI = process.env.MONGODB_URI || 'mongodb+srv://fleetUser:fleetUser%40123@cluster0.0v3cs.mongodb.net/vehicle_management'; // Use environment variable for production
-mongoose.connect(DB_URI).then(() => console.log('Connected to MongoDB'))
+const DB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/vehicle_management'; // Use environment variable for production
+mongoose.connect(DB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(() => console.log('Connected to MongoDB'))
 .catch(err => console.error('MongoDB connection error:', err));
 
 
