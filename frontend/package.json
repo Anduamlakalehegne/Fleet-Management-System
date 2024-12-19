@@ -9,7 +9,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "predeploy": "npm run build",
-    "deploy": "node --max-old-space-size=4096 node_modules/gh-pages/bin/gh-pages.js -d dist"
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
