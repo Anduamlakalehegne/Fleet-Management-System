@@ -39,7 +39,7 @@ import BlockIcon from '@mui/icons-material/Block';
 import EditIcon from '@mui/icons-material/Edit';
 import { Car, Wrench, AlertCircle, Activity } from 'lucide-react'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://myback.eifdda.org/api';
 
 function App() {
   const [vehicles, setVehicles] = useState([]);
@@ -92,8 +92,11 @@ function App() {
 
   const filteredVehicles = vehicles.filter(vehicle =>
     vehicle.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-    (filterStatus === 'All Statuses' || vehicle.status === filterStatus.replace(" Only", ""))
-  );
+    (filterStatus === 'All Statuses' || 
+     (filterStatus === 'Active Only' && vehicle.status === 'Active') ||
+     (filterStatus === 'In Maintenance Only' && vehicle.status === 'Maintenance') ||
+     (filterStatus === 'Out of Service Only' && vehicle.status === 'Out of Service'))
+);
 
   const statusCounts = vehicles.reduce((counts, vehicle) => {
     counts[vehicle.status] = (counts[vehicle.status] || 0) + 1;
@@ -113,6 +116,9 @@ function App() {
     setAnchorEl(null);
     if (status) {
       setFilterStatus(status);
+    } else {
+      // Reset filter to "All Statuses" if no status is provided
+      setFilterStatus('All Statuses');
     }
   };
 
