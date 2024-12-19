@@ -1,6 +1,5 @@
 const Vehicle = require('../models/Vehicle');
 const axios = require('axios');
-const { BACKEND_URL } = require('../config');
 
 exports.getAllVehicles = async (req, res, next) => {
   try {
