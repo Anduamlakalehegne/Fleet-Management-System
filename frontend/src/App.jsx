@@ -39,7 +39,7 @@ import BlockIcon from '@mui/icons-material/Block';
 import EditIcon from '@mui/icons-material/Edit';
 import { Car, Wrench, AlertCircle, Activity } from 'lucide-react'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://myback.eifdda.org/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://myback.eifdda.org/api';
 
 function App() {
   const [vehicles, setVehicles] = useState([]);
